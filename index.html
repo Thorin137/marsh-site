@@ -4,71 +4,148 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MARSH | Neon Fang Convergence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0c0f14;
-    color: #ffffff;
-    scroll-behavior: smooth;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    background:#03050a;
+    color:#fff;
+    overflow-x:hidden;
 }
-header {
-    background: linear-gradient(90deg,#ff3c00,#ff9900);
-    padding: 40px 20px;
-    text-align: center;
+
+/* ===== PARTICLE CANVAS ===== */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
 }
-header h1 {
-    font-size: 42px;
-    margin: 0;
+
+/* ===== SCANLINE EFFECT ===== */
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:repeating-linear-gradient(
+        transparent 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 2px
+    );
+    pointer-events:none;
 }
-section {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: auto;
+
+/* ===== HEADER ===== */
+header{
+    text-align:center;
+    padding:100px 20px;
 }
-h2 {
-    color: #ff9900;
+
+header h1{
+    font-size:50px;
+    background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 25px #00f7ff;
+    animation:glow 2s infinite alternate;
 }
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    margin-top: 20px;
-    background: #ff3c00;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
+
+@keyframes glow{
+    from{text-shadow:0 0 15px #ff00c8}
+    to{text-shadow:0 0 35px #00f7ff}
 }
-.token-box {
-    background: #141922;
-    padding: 25px;
-    border-radius: 12px;
-    margin-top: 20px;
+
+header p{
+    margin-top:20px;
+    opacity:.8;
 }
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 20px;
+
+/* ===== BUTTON ===== */
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    margin-top:30px;
+    border-radius:40px;
+    background:linear-gradient(45deg,#ff00c8,#00f7ff);
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+    box-shadow:0 0 25px #ff00c8;
 }
-.gallery img {
-    width: 100%;
-    border-radius: 12px;
+
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 45px #00f7ff;
 }
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #141922;
-    margin-top: 60px;
+
+/* ===== SECTIONS ===== */
+section{
+    padding:80px 20px;
+    max-width:1100px;
+    margin:auto;
 }
-a { color: #ff9900; }
+
+h2{
+    margin-bottom:25px;
+    font-size:28px;
+    color:#ff9900;
+    text-shadow:0 0 15px #ff9900;
+}
+
+/* ===== TOKEN BOX ===== */
+.token-box{
+    background:rgba(20,25,34,0.7);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 30px rgba(255,60,0,.4);
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:20px;
+    transition:.4s;
+    box-shadow:0 0 30px rgba(255,0,200,.6);
+}
+
+.gallery img:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 60px rgba(0,255,255,1);
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:40px;
+    background:#0a0f1f;
+    opacity:.8;
+}
+
+a{color:#ff9900}
+
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <header>
 <h1>MARSH ($BASE)</h1>
-<p>Built on Base Network | 100B Supply | $20K Liquidity</p>
+<p>Neon Fang Convergence | 100 Genesis Warlords</p>
 <a class="btn" href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07&chain=base" target="_blank">
 Buy on Uniswap
 </a>
@@ -77,32 +154,11 @@ Buy on Uniswap
 <section>
 <h2>Token Information</h2>
 <div class="token-box">
-<p><strong>Contract Address:</strong><br>
-0xFaD48095cb493FFB7406659075F025Add0D93B07</p>
-<p><strong>Total Supply:</strong> 100,000,000,000</p>
-<p><strong>Liquidity:</strong> $20,000</p>
-<p><strong>Network:</strong> Base (Ethereum L2)</p>
+<p><strong>Contract:</strong> 0xFaD48095cb493FFB7406659075F025Add0D93B07</p>
+<p><strong>Total Supply:</strong> 100B</p>
+<p><strong>Liquidity:</strong> $20K</p>
+<p><strong>Network:</strong> Base</p>
 </div>
-</section>
-
-<section>
-<h2>Neon Fang Convergence</h2>
-<p><strong>Minting Soon</strong></p>
-<p>
-Before cities rose in steel and glass, before data flowed through cables and satellites,
-there was a swamp untouched by civilization...
-</p>
-
-<p>
-Thus were born the Neon Warlords.
-Only 100 were ever forged.
-No more will rise.
-</p>
-
-<p>
-Each NFT is not merely art, but a sovereign entity bound to a decentralized realm.
-To hold one is to command a fragment of the Convergence.
-</p>
 </section>
 
 <section>
@@ -120,35 +176,44 @@ To hold one is to command a fragment of the Convergence.
 </div>
 </section>
 
-<section>
-<h2>Whitepaper</h2>
-<p><strong>100 Genesis Warlords — Permanently Limited</strong></p>
-
-<p><strong>Total Supply:</strong> 100 NFTs (Fixed)</p>
-<p><strong>Rarity:</strong> Common, Rare, Epic, Legendary, Mythic</p>
-
-<p>
-Neon Fang Convergence is the genesis of a scalable Web3 universe.
-Built on deep lore, high quality art, and permanent scarcity.
-</p>
-
-<p>
-100 Warlords.  
-No More. Ever.
-</p>
-</section>
-
-<section>
-<h2>Community</h2>
-<p>
-Twitter: <a href="https://x.com/MutantMarsh1" target="_blank">@MutantMarsh1</a><br>
-Instagram: <a href="https://www.instagram.com/marsh.base" target="_blank">@marsh.base</a>
-</p>
-</section>
-
 <footer>
 © 2026 MARSH | Neon Fang Convergence
 </footer>
+
+<script>
+/* ===== PARTICLE SYSTEM ===== */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<120;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        radius:Math.random()*2,
+        dx:(Math.random()-.5)*0.5,
+        dy:(Math.random()-.5)*0.5
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="#00f7ff";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+        if(p.x<0||p.x>canvas.width)p.dx*=-1;
+        if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
