@@ -12,12 +12,11 @@
 
 body{
     font-family:'Orbitron',sans-serif;
-    background:#03050a;
+    background:radial-gradient(circle at 20% 20%, #0f0f2a, #03050a 60%);
     color:#fff;
     overflow-x:hidden;
 }
 
-/* ===== PARTICLE CANVAS ===== */
 canvas{
     position:fixed;
     top:0;
@@ -25,12 +24,9 @@ canvas{
     z-index:-1;
 }
 
-/* ===== SCANLINE EFFECT ===== */
 body::after{
     content:"";
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
     background:repeating-linear-gradient(
@@ -41,7 +37,6 @@ body::after{
     pointer-events:none;
 }
 
-/* ===== HEADER ===== */
 header{
     text-align:center;
     padding:100px 20px;
@@ -61,16 +56,10 @@ header h1{
     to{text-shadow:0 0 35px #00f7ff}
 }
 
-header p{
-    margin-top:20px;
-    opacity:.8;
-}
-
-/* ===== BUTTON ===== */
 .btn{
     display:inline-block;
     padding:15px 35px;
-    margin-top:30px;
+    margin:10px;
     border-radius:40px;
     background:linear-gradient(45deg,#ff00c8,#00f7ff);
     color:#fff;
@@ -84,7 +73,6 @@ header p{
     box-shadow:0 0 45px #00f7ff;
 }
 
-/* ===== SECTIONS ===== */
 section{
     padding:80px 20px;
     max-width:1100px;
@@ -98,16 +86,15 @@ h2{
     text-shadow:0 0 15px #ff9900;
 }
 
-/* ===== TOKEN BOX ===== */
 .token-box{
     background:rgba(20,25,34,0.7);
     padding:30px;
     border-radius:20px;
     backdrop-filter:blur(15px);
     box-shadow:0 0 30px rgba(255,60,0,.4);
+    line-height:1.8;
 }
 
-/* ===== GALLERY ===== */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -118,24 +105,22 @@ h2{
     width:100%;
     border-radius:20px;
     transition:.4s;
-    box-shadow:0 0 30px rgba(255,0,200,.6);
+    box-shadow:
+    0 0 15px #ff00c8,
+    0 0 30px #00f7ff,
+    0 0 60px rgba(0,255,255,0.7);
 }
 
 .gallery img:hover{
     transform:scale(1.08);
-    box-shadow:0 0 60px rgba(0,255,255,1);
 }
 
-/* ===== FOOTER ===== */
 footer{
     text-align:center;
     padding:40px;
     background:#0a0f1f;
     opacity:.8;
 }
-
-a{color:#ff9900}
-
 </style>
 </head>
 
@@ -146,9 +131,19 @@ a{color:#ff9900}
 <header>
 <h1>MARSH ($BASE)</h1>
 <p>Neon Fang Convergence | 100 Genesis Warlords</p>
-<a class="btn" href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07&chain=base" target="_blank">
+
+<a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">
 Buy on Uniswap
 </a>
+
+<a class="btn" href="https://x.com/MutantMarsh1" target="_blank">
+Official X
+</a>
+
+<a class="btn" href="https://www.instagram.com/marsh.base?igsh=MWo4NXRhend0a3N6bw==" target="_blank">
+Official Instagram
+</a>
+
 </header>
 
 <section>
@@ -158,6 +153,91 @@ Buy on Uniswap
 <p><strong>Total Supply:</strong> 100B</p>
 <p><strong>Liquidity:</strong> $20K</p>
 <p><strong>Network:</strong> Base</p>
+</div>
+</section>
+
+<section>
+<h2>Web3 Manifesto</h2>
+<div class="token-box">
+MARSH is not a meme token. It is a digital ignition point.
+
+Neon Fang NFTs are sovereign digital entities inside a permanently limited universe.
+
+The token fuels expansion.  
+The NFTs anchor identity.  
+The lore builds infrastructure.  
+The community becomes force.
+
+This is Web3 evolution. Not speculation.
+</div>
+</section>
+
+<section>
+<h2>Official Whitepaper</h2>
+<div class="token-box">
+100 Genesis Warlords — Permanently Limited<br><br>
+
+Total Supply: 100 NFTs (Fixed Forever)<br><br>
+
+Rarity Breakdown:<br>
+Common — 40<br>
+Rare — 30<br>
+Epic — 20<br>
+Legendary — 7<br>
+Mythic — 3<br><br>
+
+Technology:<br>
+ERC-721 Standard<br>
+Immutable Metadata<br>
+IPFS Storage<br>
+Non-Mintable Beyond 100<br>
+Reveal Mechanism<br>
+Royalty System<br><br>
+
+Roadmap:<br>
+Phase 1 — Brand Foundation<br>
+Phase 2 — Mint & Reveal<br>
+Phase 3 — Holder Rewards<br>
+Phase 4 — Universe Expansion
+</div>
+</section>
+
+<section>
+<h2>Origin Lore</h2>
+<div class="token-box">
+Before cities rose in steel and glass, there was a swamp untouched by civilization.
+
+Beneath its surface waited a primal core of organic force fused with unrealized technology.
+
+Then the sky fractured.
+
+Neon radiance surged through the marsh.  
+Waters shimmered like liquid circuitry.  
+The ground pulsed like a living motherboard.
+
+The ancient crocodiles absorbed the surge.
+
+Bones illuminated.  
+Spines became radiant conduits.  
+Fangs crackled with resonance.
+
+Thus were born the Neon Warlords.
+
+Each carried a core:  
+Toxic Pulse  
+Lava Core  
+Plasma Spine  
+Echo Fang  
+
+Only one hundred were forged.
+
+When the final Warlord emerged,  
+the primal core collapsed into silence.
+
+No more will rise. Ever.
+
+Each NFT is a sovereign fragment of the Convergence —
+bound forever to immutable digital permanence.
 </div>
 </section>
 
@@ -181,7 +261,6 @@ Buy on Uniswap
 </footer>
 
 <script>
-/* ===== PARTICLE SYSTEM ===== */
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
@@ -189,31 +268,31 @@ canvas.height=window.innerHeight;
 
 let particles=[];
 for(let i=0;i<120;i++){
-    particles.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        radius:Math.random()*2,
-        dx:(Math.random()-.5)*0.5,
-        dy:(Math.random()-.5)*0.5
-    });
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+radius:Math.random()*2,
+dx:(Math.random()-.5)*0.5,
+dy:(Math.random()-.5)*0.5
+});
 }
 
 function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="#00f7ff";
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-        ctx.fill();
-        p.x+=p.dx;
-        p.y+=p.dy;
-        if(p.x<0||p.x>canvas.width)p.dx*=-1;
-        if(p.y<0||p.y>canvas.height)p.dy*=-1;
-    });
-    requestAnimationFrame(animate);
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#00f7ff";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+});
+requestAnimationFrame(animate);
 }
 animate();
 </script>
 
 </body>
-</html>
+    </html>
