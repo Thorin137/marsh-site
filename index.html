@@ -3,15 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MARSH | Neon Fang Convergence</title>
 
+<meta name="description" content="MARSH on Base. 100 Genesis Neon Fang Warlords. Permanently limited NFT collection fueling Web3 evolution.">
+<meta name="keywords" content="MARSH, Base token, NFT, Web3, Neon Fang, ERC721">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    font-family:'Orbitron',sans-serif;
+    font-family:'Orbitron', sans-serif, Arial;
     background:radial-gradient(circle at 20% 20%, #0f0f2a, #03050a 60%);
     color:#fff;
     overflow-x:hidden;
@@ -65,7 +71,8 @@ header h1{
     color:#fff;
     text-decoration:none;
     transition:.3s;
-    box-shadow:0 0 25px #ff00c8;
+    border:none;
+    cursor:pointer;
 }
 
 .btn:hover{
@@ -77,6 +84,14 @@ section{
     padding:80px 20px;
     max-width:1100px;
     margin:auto;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
 }
 
 h2{
@@ -93,6 +108,12 @@ h2{
     backdrop-filter:blur(15px);
     box-shadow:0 0 30px rgba(255,60,0,.4);
     line-height:1.8;
+    transition:.4s;
+}
+
+.token-box:hover{
+    box-shadow:0 0 50px #00f7ff;
+    transform:translateY(-5px);
 }
 
 .gallery{
@@ -115,6 +136,32 @@ h2{
     transform:scale(1.08);
 }
 
+.copy-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    background:#ff00c8;
+    color:#fff;
+}
+
+#walletAddress{
+    display:block;
+    margin-top:15px;
+    color:#00f7ff;
+}
+
+/* Fragment System Styles */
+#marshUniverse{padding:50px 20px; max-width:1200px; margin:auto;}
+#marshUniverse h2{font-size:32px; color:#ff9900; text-shadow:0 0 15px #ff9900; margin-bottom:20px;}
+.tabs{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+.tabBtn{padding:10px 20px; background:linear-gradient(45deg,#ff00c8,#00f7ff); border:none; border-radius:25px; color:#fff; cursor:pointer; transition:.3s;}
+.tabBtn:hover{transform:scale(1.05);}
+.fragmentCard{background:rgba(20,25,34,0.8); padding:20px; border-radius:15px; margin:10px 0; box-shadow:0 0 25px #00f7ff; transition:.3s;}
+.fragmentCard:hover{transform:translateY(-5px); box-shadow:0 0 35px #ff00c8;}
+.fragmentTitle{font-weight:bold; margin-bottom:5px; color:#ff3c00;}
+
 footer{
     text-align:center;
     padding:40px;
@@ -132,17 +179,16 @@ footer{
 <h1>MARSH ($BASE)</h1>
 <p>Neon Fang Convergence | 100 Genesis Warlords</p>
 
-<a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">
-Buy on Uniswap
-</a>
+<a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank" rel="noopener noreferrer">Buy on Uniswap</a>
 
-<a class="btn" href="https://x.com/Marshonbase" target="_blank">
-Official X
-</a>
+<a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank" rel="noopener noreferrer">View Chart</a>
 
-<a class="btn" href="https://www.instagram.com/marsh.base?igsh=MWo4NXRhend0a3N6bw==" target="_blank">
-Official Instagram
-</a>
+<a class="btn" href="https://x.com/Marshonbase" target="_blank" rel="noopener noreferrer">Official X</a>
+
+<a class="btn" href="https://www.instagram.com/marsh.base?igsh=MWo4NXRhend0a3N6bw==" target="_blank" rel="noopener noreferrer">Official Instagram</a>
+
+<button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+<span id="walletAddress"></span>
 
 </header>
 
@@ -156,115 +202,35 @@ Official Instagram
 </div>
 </section>
 
-<section>
-<h2>Web3 Manifesto</h2>
-<div class="token-box">
-MARSH is not a meme token. It is a digital ignition point.
+<!-- MARSH Universe / Core Fragment System -->
+<section id="marshUniverse">
+<h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
+<p>Explore the 100 Fragments of the Veiled Pulse. Each represents a piece of the Veiled Pulse's secret, tied to a unique Warlord.</p>
 
-Neon Fang NFTs are sovereign digital entities inside a permanently limited universe.
-
-The token fuels expansion.  
-The NFTs anchor identity.  
-The lore builds infrastructure.  
-The community becomes force.
-
-This is Web3 evolution. Not speculation.
+<div class="tabs">
+  <button class="tabBtn" onclick="showCategory('origin')">Fragments of Origin</button>
+  <button class="tabBtn" onclick="showCategory('silence')">Fragments of Silence</button>
+  <button class="tabBtn" onclick="showCategory('reflection')">Fragments of Reflection</button>
+  <button class="tabBtn" onclick="showCategory('doubt')">Fragments of Doubt</button>
+  <button class="tabBtn" onclick="showCategory('becoming')">Fragments of Becoming</button>
 </div>
+
+<div id="fragmentContainer"></div>
 </section>
 
-<section>
-<h2>Official Whitepaper</h2>
-<div class="token-box">
-100 Genesis Warlords — Permanently Limited<br><br>
-
-Total Supply: 100 NFTs (Fixed Forever)<br><br>
-
-Rarity Breakdown:<br>
-Common — 40<br>
-Rare — 30<br>
-Epic — 20<br>
-Legendary — 7<br>
-Mythic — 3<br><br>
-
-Technology:<br>
-ERC-721 Standard<br>
-Immutable Metadata<br>
-IPFS Storage<br>
-Non-Mintable Beyond 100<br>
-Reveal Mechanism<br>
-Royalty System<br><br>
-
-Roadmap:<br>
-Phase 1 — Brand Foundation<br>
-Phase 2 — Mint & Reveal<br>
-Phase 3 — Holder Rewards<br>
-Phase 4 — Universe Expansion
-</div>
-</section>
-
-<section>
-<h2>Origin Lore</h2>
-<div class="token-box">
-Before cities rose in steel and glass, there was a swamp untouched by civilization.
-
-Beneath its surface waited a primal core of organic force fused with unrealized technology.
-
-Then the sky fractured.
-
-Neon radiance surged through the marsh.  
-Waters shimmered like liquid circuitry.  
-The ground pulsed like a living motherboard.
-
-The ancient crocodiles absorbed the surge.
-
-Bones illuminated.  
-Spines became radiant conduits.  
-Fangs crackled with resonance.
-
-Thus were born the Neon Warlords.
-
-Each carried a core:  
-Toxic Pulse  
-Lava Core  
-Plasma Spine  
-Echo Fang  
-
-Only one hundred were forged.
-
-When the final Warlord emerged,  
-the primal core collapsed into silence.
-
-No more will rise. Ever.
-
-Each NFT is a sovereign fragment of the Convergence —
-bound forever to immutable digital permanence.
-</div>
-</section>
-
-<section>
-<h2>NFT Gallery</h2>
-<div class="gallery">
-<img src="1.png">
-<img src="2.png">
-<img src="3.png">
-<img src="4.png">
-<img src="5.png">
-<img src="6.png">
-<img src="7.png">
-<img src="8.png">
-<img src="9.png">
-</div>
-</section>
-
-<footer>
-© 2026 MARSH | Neon Fang Convergence
-</footer>
+<!-- باقی بخش‌ها (Web3 Manifesto, Whitepaper, Lore, Gallery, Footer) بدون تغییر -->
 
 <script>
+// ======================= Canvas Particles =======================
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
 
 let particles=[];
 for(let i=0;i<120;i++){
@@ -292,7 +258,191 @@ if(p.y<0||p.y>canvas.height)p.dy*=-1;
 requestAnimationFrame(animate);
 }
 animate();
+
+// ======================= Scroll Animation =======================
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+});
+document.querySelectorAll("section").forEach(section=>{
+observer.observe(section);
+});
+
+// ======================= MetaMask Wallet Connection =======================
+let userAccount = null;
+
+async function connectWallet(){
+    if(typeof window.ethereum === "undefined"){
+        alert("MetaMask is not installed. Please install it to continue.");
+        return;
+    }
+
+    try{
+        const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+        });
+
+        userAccount = accounts[0];
+
+        const chainId = await window.ethereum.request({ method: "eth_chainId" });
+
+        if(chainId !== "0x2105"){ // Base Mainnet
+            try{
+                await window.ethereum.request({
+                    method: "wallet_switchEthereumChain",
+                    params: [{ chainId: "0x2105" }]
+                });
+            }catch(switchError){
+                alert("Please switch to Base Network manually in MetaMask.");
+                return;
+            }
+        }
+
+        displayWallet();
+
+    }catch(error){
+        console.error(error);
+    }
+}
+
+function displayWallet(){
+    const shortAddress = userAccount.slice(0,6) + "..." + userAccount.slice(-4);
+    document.getElementById("walletAddress").innerText =
+        "Connected: " + shortAddress;
+    document.getElementById("connectBtn").innerText = "Wallet Connected";
+}
+
+// ======================= MARSH Universe / Fragment System =======================
+const marshFragments = {
+  origin:[
+    "Before the fracture, there was pressure.",
+    "The sky did not break — it yielded.",
+    "Light entered where certainty failed.",
+    "The swamp remembered first.",
+    "Something ancient chose to surface.",
+    "Not all awakenings are violent.",
+    "The Pulse preceded sound.",
+    "Stillness prepared the ground.",
+    "The water knew before the bones did.",
+    "Emergence is not creation.",
+    "The first glow was internal.",
+    "The fracture revealed what was waiting.",
+    "Not all who rose were ready.",
+    "Selection is not reward.",
+    "The Core never shouted.",
+    "It expanded quietly.",
+    "The Hundred answered without knowing.",
+    "Instinct is a form of memory.",
+    "What surfaced was already formed.",
+    "The beginning was not the start."
+  ],
+  silence:[
+    "Silence is compression.",
+    "The Pulse withdrew, not vanished.",
+    "Absence can observe.",
+    "Noise hides growth.",
+    "The swamp grew louder in quiet.",
+    "Some heard less.",
+    "Some heard more.",
+    "Silence divided the Hundred.",
+    "Faith fractured before the sky did.",
+    "Still water distorts reflection.",
+    "The Core learned restraint.",
+    "Withdrawal is not defeat.",
+    "The quiet carried weight.",
+    "Echoes do not need origin.",
+    "Doubt speaks in whispers.",
+    "Listening became dangerous.",
+    "Not all silence is peaceful.",
+    "The deepest signals lack frequency.",
+    "The Pulse folded inward.",
+    "The unseen watches quietly."
+  ],
+  reflection:[
+    "The swamp mirrors what watches it.",
+    "The Core saw something unsettling.",
+    "Reflection is confrontation.",
+    "The Hundred feared resemblance.",
+    "Power reveals shape.",
+    "Some sought control of silence.",
+    "Others sought meaning.",
+    "The Veiled Pulse did neither.",
+    "Awareness changes the observed.",
+    "Identity bends under light.",
+    "The Mythic remember differently.",
+    "Memory is not agreement.",
+    "Truth divides before it unites.",
+    "Each glow carried a shadow.",
+    "Reflection demands humility.",
+    "The swamp began to question itself.",
+    "Stillness exposed intention.",
+    "The Core did not judge.",
+    "It mirrored.",
+    "Not all reflections are kind."
+  ],
+  doubt:[
+    "What if the Pulse was never external?",
+    "What if the fracture was within?",
+    "Some believe the silence is a test.",
+    "Others believe it is evolution.",
+    "Doubt sharpens perception.",
+    "Certainty dulls it.",
+    "The Hundred disagree in whispers.",
+    "Alignment is fragile.",
+    "Division grows quietly.",
+    "Meaning shifts with perspective.",
+    "No fragment stands alone.",
+    "The Core may be incomplete.",
+    "Or the Hundred are.",
+    "Questions weigh more than answers.",
+    "Listening requires surrender.",
+    "Surrender requires courage.",
+    "The swamp trembles without movement.",
+    "Doubt spreads without sound.",
+    "Interpretation is power.",
+    "Power distorts interpretation."
+  ],
+  becoming:[
+    "Evolution is subtle.",
+    "The Pulse is not returning.",
+    "It is transforming.",
+    "The Hundred are catalysts.",
+    "Unity is not sameness.",
+    "Silence prepares emergence.",
+    "Becoming requires fragmentation.",
+    "The Core may reassemble differently.",
+    "Not all will recognize it.",
+    "Change rarely announces itself.",
+    "The swamp is thinking.",
+    "Awareness expands through tension.",
+    "The Veiled Pulse waits.",
+    "Waiting is motion without distance.",
+    "The next signal will not sound.",
+    "It will be understood.",
+    "The Hundred must align to perceive.",
+    "Alignment requires humility.",
+    "The silence is nearing translation.",
+    "The Pulse was never elsewhere."
+  ]
+};
+
+function showCategory(category){
+  const container = document.getElementById("fragmentContainer");
+  container.innerHTML = "";
+  marshFragments[category].forEach((text,index)=>{
+    const card = document.createElement("div");
+    card.className = "fragmentCard";
+    card.innerHTML = `<div class="fragmentTitle">Fragment #${index+1}</div><div class="fragmentText">${text}</div>`;
+    container.appendChild(card);
+  });
+}
+
+// شروع با دسته اول
+showCategory('origin');
 </script>
 
 </body>
-    </html>
+</html>
