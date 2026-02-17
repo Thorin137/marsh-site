@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARSH | Neon Fang Convergence</title>
+<meta name="description" content="MARSH on Base. 100 Genesis Neon Fang Warlords. Permanently limited NFT collection fueling Web3 evolution.">
+<meta name="keywords" content="MARSH, Base token, NFT, Web3, Neon Fang, ERC721">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+body{background:radial-gradient(circle at 20% 20%,#0f0f2a,#03050a 60%);color:#fff;overflow-x:hidden;}
+header{text-align:center;padding:100px 20px;}
+header h1{font-size:50px;background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 25px #00f7ff;}
+header p{opacity:.7;margin-top:10px;font-size:18px;}
+.btn{display:inline-block;padding:15px 35px;margin:10px;border-radius:40px;background:linear-gradient(45deg,#ff00c8,#00f7ff);color:#fff;text-decoration:none;border:none;cursor:pointer;transition:.3s;}
+.btn:hover{transform:scale(1.1);box-shadow:0 0 45px #00f7ff;}
+section{padding:80px 20px;max-width:1200px;margin:auto;}
+h2{margin-bottom:25px;font-size:28px;color:#ff9900;text-shadow:0 0 15px #ff9900;}
+.token-box{background:rgba(20,25,34,0.7);padding:30px;border-radius:20px;backdrop-filter:blur(15px);box-shadow:0 0 30px rgba(255,60,0,.4);line-height:1.8;}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.tabBtn{padding:10px 20px;background:linear-gradient(45deg,#ff00c8,#00f7ff);border:none;border-radius:25px;color:#fff;cursor:pointer;transition:.3s;}
+.tabBtn:hover{transform:scale(1.05);}
+.fragmentCard{background:rgba(20,25,34,0.8);padding:20px;border-radius:15px;margin:10px 0;box-shadow:0 0 25px #00f7ff;}
+.fragmentTitle{font-weight:bold;margin-bottom:5px;color:#ff3c00;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px;}
+.card{background:#111827;padding:10px;border-radius:12px;text-align:center;transition: transform 0.3s, box-shadow 0.3s;}
+.card img{width:100%;border-radius:10px;transition: transform 0.3s, box-shadow 0.3s;}
+.card:hover img{transform:scale(1.05);box-shadow:0 0 25px #00f7ff;}
+.highlight{border:2px solid #00f7ff;box-shadow:0 0 25px #00f7ff;}
+.lord{text-align:center;margin-bottom:30px;}
+.lord img{width:240px;border-radius:20px;}
+footer{text-align:center;padding:40px;background:#0a0f1f;opacity:.9;}
+.socials a{margin:0 10px;color:#00f7ff;text-decoration:none;font-size:22px;transition:.3s;}
+.socials a:hover{color:#ff00c8;}
+#content {transition: opacity 0.3s;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MARSH ($BASE)</h1>
+<p>Neon Fang Convergence | 100 Genesis Warlords</p>
+<a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
+<a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
+<button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+<span id="walletAddress"></span>
+<div class="socials" style="margin-top:20px;">
+  <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
+  <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
+</div>
+</header>
+
+<section>
+<h2>Token Information</h2>
+<div class="token-box">
+<p><strong>Contract:</strong> 0xFaD48095cb493FFB7406659075F025Add0D93B07</p>
+<p><strong>Total Supply:</strong> 100B</p>
+<p><strong>Liquidity:</strong> $20K</p>
+<p><strong>Network:</strong> Base</p>
+</div>
+</section>
+
+<section>
+<h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
+<div class="tabs">
+<button class="tabBtn" onclick="showCategory('origin')">Origin</button>
+<button class="tabBtn" onclick="showCategory('silence')">Silence</button>
+<button class="tabBtn" onclick="showCategory('reflection')">Reflection</button>
+<button class="tabBtn" onclick="showCategory('doubt')">Doubt</button>
+<button class="tabBtn" onclick="showCategory('becoming')">Becoming</button>
+</div>
+<div id="fragmentContainer"></div>
+</section>
+
+<section>
+<h2>🔥 MARSH 100 Visual Universe</h2>
+<p style="opacity:.6;">Upload your WebP files inside /images as nft_1.webp to nft_100.webp</p>
+<div class="tabs">
+<button class="tabBtn" onclick="showFragment(1)">Fragment I</button>
+<button class="tabBtn" onclick="showFragment(2)">Fragment II</button>
+<button class="tabBtn" onclick="showFragment(3)">Fragment III</button>
+<button class="tabBtn" onclick="showFragment(4)">Fragment IV</button>
+<button class="tabBtn" onclick="showFragment(5)">Fragment V</button>
+<button class="tabBtn" onclick="showAll()">Full Gallery</button>
+</div>
+<div id="content"></div>
+</section>
+
+<footer>© 2026 MARSH — Neon Fang Convergence</footer>
+
+<script>
+async function connectWallet(){
+  if(typeof window.ethereum==="undefined"){alert("Install MetaMask");return;}
+  const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
+  document.getElementById("walletAddress").innerText="Connected: "+accounts[0].slice(0,6)+"..."+accounts[0].slice(-4);
+}
+const marshFragments={origin:["Before the fracture, there was pressure."],silence:["Silence is compression."],reflection:["Reflection is confrontation."],doubt:["What if the Pulse was never external?"],becoming:["Evolution is subtle."]};
+function showCategory(category){const container=document.getElementById("fragmentContainer");container.innerHTML="";marshFragments[category].forEach((text,index)=>{const card=document.createElement("div");card.className="fragmentCard";card.innerHTML=`<div class="fragmentTitle">Fragment #${index+1}</div><div>${text}</div>`;container.appendChild(card);});}
+showCategory("origin");
+function showFragment(num){const content=document.getElementById("content");content.style.opacity=0;setTimeout(()=>{let start=(num-1)*20+1;let lordId=num*20;let end=lordId-1;let html=`<div class="section"><div class="lord"><h2>👑 Lord of Fragment ${num} — NFT #${lordId}</h2><img src="images/nft_${lordId}.webp" class="highlight"></div><div class="grid">`;for(let i=start;i<=end;i++){html+=`<div class="card"><img src="images/nft_${i}.webp" loading="lazy"><p>NFT #${i}</p></div>`;}html+="</div></div>";content.innerHTML=html;content.style.opacity=1;},200);}
+function showAll(){const content=document.getElementById("content");content.style.opacity=0;setTimeout(()=>{let html=`<div class="section"><div class="grid">`;for(let i=1;i<=100;i++){let isLord=(i%20===0);html+=`<div class="card ${isLord?"highlight":""}"><img src="images/nft_${i}.webp" loading="lazy"><p>${isLord?"👑 Lord ":""}NFT #${i}</p></div>`;}html+="</div></div>";content.innerHTML=html;content.style.opacity=1;},200);}
+showFragment(1);
+</script>
+</body>
+</html>
