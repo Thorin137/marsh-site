@@ -159,7 +159,7 @@ footer{
 
 <section>
 <h2>🔥 MARSH 100 Visual Universe</h2>
-<p style="opacity:.6;">Upload your WebP files inside /images as nft_1.webp to nft_100.webp</p>
+<p style="opacity:.6;">Upload your PNG files inside /images as nft_1.png to nft_100.png</p>
 <div class="tabs">
 <button class="tabBtn" onclick="showFragment(1)">Fragment I</button>
 <button class="tabBtn" onclick="showFragment(2)">Fragment II</button>
@@ -212,41 +212,4 @@ function showFragment(num){
     let end=lordId-1;
     let html=`<div class="section">
       <div class="lord">
-        <h2>👑 Lord of Fragment ${num} — NFT #${lordId}</h2>
-        <img src="images/nft_${lordId}.webp" class="highlight">
-      </div>
-      <div class="grid">`;
-    for(let i=start;i<=end;i++){
-      html+=`<div class="card">
-        <img src="images/nft_${i}.webp" loading="lazy">
-        <p>NFT #${i}</p>
-      </div>`;
-    }
-    html+="</div></div>";
-    content.innerHTML=html;
-    content.style.opacity=1;
-  },200);
-}
-
-function showAll(){
-  const content=document.getElementById("content");
-  content.style.opacity=0;
-  setTimeout(()=>{
-    let html=`<div class="section"><div class="grid">`;
-    for(let i=1;i<=100;i++){
-      let isLord=(i%20===0);
-      html+=`<div class="card ${isLord?"highlight":""}">
-        <img src="images/nft_${i}.webp" loading="lazy">
-        <p>${isLord?"👑 Lord ":""}NFT #${i}</p>
-      </div>`;
-    }
-    html+="</div></div>";
-    content.innerHTML=html;
-    content.style.opacity=1;
-  },200);
-}
-showFragment(1);
-</script>
-
-</body>
-                                                                             </html>
+        <h2>👑 Lord of Fragment ${num} —
