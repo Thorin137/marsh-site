@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MARSH | Neon Fang Convergence</title>
-<meta name="description" content="MARSH on Base. 100 Genesis Neon Fang Warlords. Permanently limited NFT collection fueling Web3 evolution.">
+<meta name="description" content="MARSH on Base. 100 Genesis Neon Fang NFTs. Permanently limited NFT collection fueling Web3 evolution.">
 <meta name="keywords" content="MARSH, Base token, NFT, Web3, Neon Fang, ERC721">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 body{
-  background:radial-gradient(circle at 20% 20%,#0f0f2a,#03050a 60%);
   color:#fff;
   overflow-x:hidden;
 }
@@ -70,36 +69,6 @@ h2{
   box-shadow:0 0 25px #00f7ff;
 }
 .fragmentTitle{font-weight:bold;margin-bottom:5px;color:#ff3c00;}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:15px;
-}
-.card{
-  background:#111827;
-  padding:10px;
-  border-radius:12px;
-  text-align:center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card img{
-  width:100%;
-  border-radius:10px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover img{
-  transform:scale(1.05);
-  box-shadow:0 0 25px #00f7ff;
-}
-.highlight{
-  border:2px solid #00f7ff;
-  box-shadow:0 0 25px #00f7ff;
-}
-.lord{text-align:center;margin-bottom:30px;}
-.lord img{
-  width:240px;
-  border-radius:20px;
-}
 footer{
   text-align:center;
   padding:40px;
@@ -115,13 +84,28 @@ footer{
 }
 .socials a:hover{color:#ff00c8;}
 #content {transition: opacity 0.3s;}
+#lords-images {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+#lords-images img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+#lords-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00f7ff;
+}
 </style>
 </head>
 <body>
 
 <header>
 <h1>MARSH ($BASE)</h1>
-<p>Neon Fang Convergence | 100 Genesis Warlords</p>
+<p>Silent in the swamp. Violent on the charts.</p>
 
 <a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
 <a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
@@ -147,6 +131,7 @@ footer{
 
 <section>
 <h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
+<p style="opacity:.6;">In the swampy, cyberpunk world of MARSH, there are 100 Genesis Neon Fang NFTs who rule the land. The land is divided into five powerful realms, each with 19 crocodiles and a lord leading them. These realms are governed by five lords, each bringing their own vision to the land.</p>
 <div class="tabs">
 <button class="tabBtn" onclick="showCategory('origin')">Origin</button>
 <button class="tabBtn" onclick="showCategory('silence')">Silence</button>
@@ -158,94 +143,38 @@ footer{
 </section>
 
 <section>
-<h2>🔥 MARSH 100 Visual Universe</h2>
-<p style="opacity:.6;">Upload your PNG files inside /images as 1.png to 100.png</p>
-<div class="tabs">
-<button class="tabBtn" onclick="showFragment(1)">Fragment I</button>
-<button class="tabBtn" onclick="showFragment(2)">Fragment II</button>
-<button class="tabBtn" onclick="showFragment(3)">Fragment III</button>
-<button class="tabBtn" onclick="showFragment(4)">Fragment IV</button>
-<button class="tabBtn" onclick="showFragment(5)">Fragment V</button>
-<button class="tabBtn" onclick="showAll()">Full Gallery</button>
+<h2>🔥 The Five Realms — The Lords and Their Crocodiles</h2>
+<p>The land of MARSH is divided into five realms, each ruled by a powerful lord. Every realm is home to 19 fearsome crocodiles, and together they create the 100 strong warriors of MARSH.</p>
+
+<div class="fragmentCard">
+  <div class="fragmentTitle">Realm I: The Silent Swamp</div>
+  <p>The lord here, known as "Lorde Xypher 'The Silent Echo'," rules with unmatched stealth and power. His crocodiles are silent but deadly, lurking beneath the still waters.</p>
 </div>
-<div id="content"></div>
-</section>
 
-<footer>
-© 2026 MARSH — Neon Fang Convergence
-</footer>
+<div class="fragmentCard">
+  <div class="fragmentTitle">Realm II: The Echoing Depths</div>
+  <p>The lord here, "Lorde Virex 'The Deep Diver'," controls the deepest waters and the hidden dangers lurking beneath them.</p>
+</div>
 
-<script>
-async function connectWallet(){
-  if(typeof window.ethereum==="undefined"){alert("Install MetaMask");return;}
-  const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
-  document.getElementById("walletAddress").innerText=
-  "Connected: "+accounts[0].slice(0,6)+"..."+accounts[0].slice(-4);
-}
+<div class="fragmentCard">
+  <div class="fragmentTitle">Realm III: The Roaring Mire</div>
+  <p>The lord here, "Lorde Stryker 'The Roar of Dread'," leads with brute strength, commanding his crocodiles with an iron will.</p>
+</div>
 
-const marshFragments={
-  origin:["Before the fracture, there was pressure."],
-  silence:["Silence is compression."],
-  reflection:["Reflection is confrontation."],
-  doubt:["What if the Pulse was never external?"],
-  becoming:["Evolution is subtle."]
-};
+<div class="fragmentCard">
+  <div class="fragmentTitle">Realm IV: The Shifting Marsh</div>
+  <p>The lord here, "Lorde Nephraxis 'The Shifter of Mists'," is ever-changing, using his cunning to maintain dominance over his shifting domain.</p>
+</div>
 
-function showCategory(category){
-  const container=document.getElementById("fragmentContainer");
-  container.innerHTML="";
-  marshFragments[category].forEach((text,index)=>{
-    const card=document.createElement("div");
-    card.className="fragmentCard";
-    card.innerHTML=`<div class="fragmentTitle">Fragment #${index+1}</div><div>${text}</div>`;
-    container.appendChild(card);
-  });
-}
-showCategory("origin");
+<div class="fragmentCard">
+  <div class="fragmentTitle">Realm V: The Burning Wastes</div>
+  <p>The lord here, "Lorde Solvathar 'The Flame Over Marsh'," controls the fires that scorch his land, with crocodiles forged in the heat of battle.</p>
+</div>
 
-function showFragment(num){
-  const content=document.getElementById("content");
-  content.style.opacity=0;
-  setTimeout(()=>{
-    let start=(num-1)*20+1;
-    let lordId=num*20;
-    let end=lordId-1;
-    let html=`<div class="section">
-      <div class="lord">
-        <h2>👑 Lord of Fragment ${num} — </h2>
-      </div>
-      <div class="grid">`;
-    for(let i=start; i<=lordId; i++){
-      html+=`
-        <div class="card">
-          <img src="/images/${i}.png" alt="NFT ${i}">
-        </div>
-      `;
-    }
-    html+=`</div></div>`;
-    content.innerHTML=html;
-    content.style.opacity=1;
-  },300);
-}
-
-function showAll(){
-  const content = document.getElementById("content");
-  content.style.opacity = 0;
-  setTimeout(() => {
-    let html = `<div class="grid">`;
-    for (let i = 1; i <= 100; i++) {
-      html += `
-        <div class="card">
-          <img src="/images/${i}.png" alt="NFT ${i}">
-        </div>
-      `;
-    }
-    html += `</div>`;
-    content.innerHTML = html;
-    content.style.opacity = 1;
-  }, 300);
-}
-</script>
-
-</body>
-  </html>
+<section>
+  <h2>🔥 Lords Images</h2>
+  <p>Below are the images of the 5 powerful lords who rule the realms of MARSH.</p>
+  <div id="lords-images">
+    <img src="https://github.com/USERNAME/REPOSITORY_NAME/raw/main/images/lord1.png" alt="Lorde Xypher" title="Lorde Xypher 'The Silent Echo'">
+    <img src="https://github.com/USERNAME/REPOSITORY_NAME/raw/main/images/lord2.png" alt="Lorde Virex" title="Lorde Virex 'The Deep Diver'">
+    <img src="https://github.com/USERNAME/REPOSITORY_NAME/raw/main/images/lord3.png" alt="Lorde Stryker" title="L
