@@ -11,13 +11,34 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
-body { 
-  color: #fff; 
-  overflow-x: hidden; 
-  background-color: #0a3d2b; /* سبز مردابی */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
 }
-header { text-align: center; padding: 50px 20px; background-color: #1d2b2c; border-radius: 15px; box-shadow: 0 0 20px rgba(0, 247, 255, 0.5); }
+
+html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  background-color: #0a3d2b; /* سبز مردابی */
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #1d2b2c;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+  width: 100%;
+  max-width: 900px;
+}
+
 header h1 {
   font-size: 50px;
   background: linear-gradient(90deg, #ff3c00, #00f7ff, #ff00c8);
@@ -25,13 +46,20 @@ header h1 {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 25px #00f7ff;
 }
-header p { opacity: .7; margin-top: 10px; font-size: 18px; }
+
+header p {
+  opacity: .7;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
 .header-btns {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
 }
+
 .header-btns a, .header-btns button {
   padding: 15px 35px;
   margin: 10px;
@@ -43,17 +71,26 @@ header p { opacity: .7; margin-top: 10px; font-size: 18px; }
   cursor: pointer;
   transition: .3s;
 }
-.header-btns a:hover, .header-btns button:hover { 
-  transform: scale(1.1); 
-  box-shadow: 0 0 45px #00f7ff; 
+
+.header-btns a:hover, .header-btns button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 45px #00f7ff;
 }
-section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+
+section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px;
+}
+
 h2 {
   margin-bottom: 25px;
   font-size: 28px;
   color: #ff9900;
   text-shadow: 0 0 15px #ff9900;
 }
+
 .token-box {
   background: rgba(20, 25, 34, 0.7);
   padding: 30px;
@@ -62,14 +99,28 @@ h2 {
   box-shadow: 0 0 30px rgba(255, 60, 0, .4);
   line-height: 1.8;
 }
-.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .tabBtn {
   padding: 10px 20px;
   background: linear-gradient(45deg, #ff00c8, #00f7ff);
-  border: none; border-radius: 25px; color: #fff; cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
   transition: .3s;
 }
-.tabBtn:hover { transform: scale(1.05); }
+
+.tabBtn:hover {
+  transform: scale(1.05);
+}
+
 .fragmentCard {
   background: rgba(20, 25, 34, 0.8);
   padding: 20px;
@@ -77,8 +128,20 @@ h2 {
   margin: 10px 0;
   box-shadow: 0 0 25px #00f7ff;
 }
-.fragmentTitle { font-weight: bold; margin-bottom: 5px; color: #ff3c00; }
-footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
+
+.fragmentTitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ff3c00;
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  background: #0a0f1f;
+  opacity: .9;
+}
+
 .socials a {
   margin: 0 10px;
   color: #00f7ff;
@@ -86,85 +149,61 @@ footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
   font-size: 22px;
   transition: .3s;
 }
-.socials a:hover { color: #ff00c8; }
-#content { transition: opacity 0.3s; }
+
+.socials a:hover {
+  color: #ff00c8;
+}
+
+#content {
+  transition: opacity 0.3s;
+}
 </style>
 </head>
 <body>
 
 <header>
-<h1>MARSH ($BASE)</h1>
-<p>Silent in the swamp. Violent on the charts.</p>
+  <h1>MARSH ($BASE)</h1>
+  <p>Silent in the swamp. Violent on the charts.</p>
 
-<div class="header-btns">
-  <a href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
-  <a href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
-  <button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
-</div>
+  <div class="header-btns">
+    <a href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
+    <a href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
+    <button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+  </div>
 
-<div class="socials" style="margin-top:20px;">
-  <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
-  <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
-</div>
+  <div class="socials" style="margin-top:20px;">
+    <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
+    <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
+  </div>
 </header>
 
 <section>
-<h2>Token Information</h2>
-<div class="token-box">
-<p><strong>Contract:</strong> 0xFaD48095cb493FFB7406659075F025Add0D93B07</p>
-<p><strong>Total Supply:</strong> 100B</p>
-<p><strong>Liquidity:</strong> $20K</p>
-<p><strong>Network:</strong> Base</p>
-</div>
+  <h2>Token Information</h2>
+  <div class="token-box">
+    <p><strong>Contract:</strong> 0xFaD48095cb493FFB7406659075F025Add0D93B07</p>
+    <p><strong>Total Supply:</strong> 100B</p>
+    <p><strong>Liquidity:</strong> $20K</p>
+    <p><strong>Network:</strong> Base</p>
+  </div>
 </section>
 
 <section>
-<h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
-<p style="opacity:.6;">In the swampy, cyberpunk world of MARSH, there are 100 Genesis Neon Fang NFTs who rule the land. The land is divided into five powerful realms, each with 19 crocodiles and a lord leading them. These realms are governed by five lords, each bringing their own vision to the land.</p>
-<div class="tabs">
-<button class="tabBtn" onclick="showCategory('origin')">Origin</button>
-<button class="tabBtn" onclick="showCategory('silence')">Silence</button>
-<button class="tabBtn" onclick="showCategory('reflection')">Reflection</button>
-<button class="tabBtn" onclick="showCategory('doubt')">Doubt</button>
-<button class="tabBtn" onclick="showCategory('becoming')">Becoming</button>
-</div>
-<div id="fragmentContainer"></div>
+  <h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
+  <p style="opacity:.6;">In the swampy, cyberpunk world of MARSH, there are 100 Genesis Neon Fang NFTs who rule the land. The land is divided into five powerful realms, each with 19 crocodiles and a lord leading them. These realms are governed by five lords, each bringing their own vision to the land.</p>
+  <div class="tabs">
+    <button class="tabBtn" onclick="showCategory('origin')">Origin</button>
+    <button class="tabBtn" onclick="showCategory('silence')">Silence</button>
+    <button class="tabBtn" onclick="showCategory('reflection')">Reflection</button>
+    <button class="tabBtn" onclick="showCategory('doubt')">Doubt</button>
+    <button class="tabBtn" onclick="showCategory('becoming')">Becoming</button>
+  </div>
+  <div id="fragmentContainer"></div>
 </section>
 
 <section>
-<h2>🔥 The Five Realms — The Lords and Their Crocodiles</h2>
-<p>The land of MARSH is divided into five realms, each ruled by a powerful lord. Every realm is home to 19 fearsome crocodiles, and together they create the 100 strong warriors of MARSH.</p>
+  <h2>🔥 The Five Realms — The Lords and Their Crocodiles</h2>
+  <p>The land of MARSH is divided into five realms, each ruled by a powerful lord. Every realm is home to 19 fearsome crocodiles, and together they create the 100 strong warriors of MARSH.</p>
 
-<div class="fragmentCard">
-  <div class="fragmentTitle">Realm I: The Silent Swamp</div>
-  <p>The lord here, known as "Lorde Xypher 'The Silent Echo'," rules with unmatched stealth and power. His crocodiles are silent but deadly, lurking beneath the still waters.</p>
-</div>
-
-<div class="fragmentCard">
-  <div class="fragmentTitle">Realm II: The Echoing Depths</div>
-  <p>The lord here, "Lorde Virex 'The Deep Diver'," controls the deepest waters and the hidden dangers lurking beneath them.</p>
-</div>
-
-<div class="fragmentCard">
-  <div class="fragmentTitle">Realm III: The Roaring Mire</div>
-  <p>The lord here, "Lorde Stryker 'The Roar of Dread'," leads with brute strength, commanding his crocodiles with an iron will.</p>
-</div>
-
-<div class="fragmentCard">
-  <div class="fragmentTitle">Realm IV: The Shifting Marsh</div>
-  <p>The lord here, "Lorde Nephraxis 'The Shifter of Mists'," is ever-changing, using his cunning to maintain dominance over his shifting domain.</p>
-</div>
-
-<div class="fragmentCard">
-  <div class="fragmentTitle">Realm V: The Burning Wastes</div>
-  <p>The lord here, "Lorde Solvathar 'The Flame Over Marsh'," controls the fires that scorch his land, with crocodiles forged in the heat of battle.</p>
-</div>
-
-<footer>
-  © 2026 MARSH — Neon Fang Convergence
-</footer>
-
-<script>
-async function connectWallet(){
-  if(typeof window.ethereum==="undefined"){alert("Install MetaMask");return;}
-  const accounts=await window.ethereum.request({method
+  <div class="fragmentCard">
+    <div class="fragmentTitle">Realm I: The Silent Swamp</div>
+    <p>The lord here, known as "Lorde Xypher 'The Silent Echo'," rules with unmatched stealth and power. His crocodiles are silent but deadly, lurking beneath the still
