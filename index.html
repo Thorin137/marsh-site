@@ -11,79 +11,71 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
-body{
-  color:#fff;
-  overflow-x:hidden;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
+body { color: #fff; overflow-x: hidden; }
+header { text-align: center; padding: 100px 20px; }
+header h1 {
+  font-size: 50px;
+  background: linear-gradient(90deg, #ff3c00, #00f7ff, #ff00c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px #00f7ff;
 }
-header{text-align:center;padding:100px 20px;}
-header h1{
-  font-size:50px;
-  background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px #00f7ff;
+header p { opacity: .7; margin-top: 10px; font-size: 18px; }
+.btn {
+  display: inline-block;
+  padding: 15px 35px;
+  margin: 10px;
+  border-radius: 40px;
+  background: linear-gradient(45deg, #ff00c8, #00f7ff);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
 }
-header p{opacity:.7;margin-top:10px;font-size:18px;}
-.btn{
-  display:inline-block;
-  padding:15px 35px;
-  margin:10px;
-  border-radius:40px;
-  background:linear-gradient(45deg,#ff00c8,#00f7ff);
-  color:#fff;
-  text-decoration:none;
-  border:none;
-  cursor:pointer;
-  transition:.3s;
+.btn:hover { transform: scale(1.1); box-shadow: 0 0 45px #00f7ff; }
+section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #ff9900;
+  text-shadow: 0 0 15px #ff9900;
 }
-.btn:hover{transform:scale(1.1);box-shadow:0 0 45px #00f7ff;}
-section{padding:80px 20px;max-width:1200px;margin:auto;}
-h2{
-  margin-bottom:25px;
-  font-size:28px;
-  color:#ff9900;
-  text-shadow:0 0 15px #ff9900;
+.token-box {
+  background: rgba(20, 25, 34, 0.7);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(255, 60, 0, .4);
+  line-height: 1.8;
 }
-.token-box{
-  background:rgba(20,25,34,0.7);
-  padding:30px;
-  border-radius:20px;
-  backdrop-filter:blur(15px);
-  box-shadow:0 0 30px rgba(255,60,0,.4);
-  line-height:1.8;
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.tabBtn {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #ff00c8, #00f7ff);
+  border: none; border-radius: 25px; color: #fff; cursor: pointer;
+  transition: .3s;
 }
-.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
-.tabBtn{
-  padding:10px 20px;
-  background:linear-gradient(45deg,#ff00c8,#00f7ff);
-  border:none;border-radius:25px;color:#fff;cursor:pointer;
-  transition:.3s;
+.tabBtn:hover { transform: scale(1.05); }
+.fragmentCard {
+  background: rgba(20, 25, 34, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px 0;
+  box-shadow: 0 0 25px #00f7ff;
 }
-.tabBtn:hover{transform:scale(1.05);}
-.fragmentCard{
-  background:rgba(20,25,34,0.8);
-  padding:20px;
-  border-radius:15px;
-  margin:10px 0;
-  box-shadow:0 0 25px #00f7ff;
+.fragmentTitle { font-weight: bold; margin-bottom: 5px; color: #ff3c00; }
+footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
+.socials a {
+  margin: 0 10px;
+  color: #00f7ff;
+  text-decoration: none;
+  font-size: 22px;
+  transition: .3s;
 }
-.fragmentTitle{font-weight:bold;margin-bottom:5px;color:#ff3c00;}
-footer{
-  text-align:center;
-  padding:40px;
-  background:#0a0f1f;
-  opacity:.9;
-}
-.socials a{
-  margin:0 10px;
-  color:#00f7ff;
-  text-decoration:none;
-  font-size:22px;
-  transition:.3s;
-}
-.socials a:hover{color:#ff00c8;}
-#content {transition: opacity 0.3s;}
+.socials a:hover { color: #ff00c8; }
+#content { transition: opacity 0.3s; }
 #lords-images {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -113,7 +105,7 @@ footer{
 <button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
 <span id="walletAddress"></span>
 
-<div class="socials" style="margin-top:20px;">
+<div class="socials" style="margin-top: 20px;">
   <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
   <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
 </div>
@@ -175,7 +167,4 @@ footer{
   <h2>🔥 Lords Images</h2>
   <p>Below are the images of the 5 powerful lords who rule the realms of MARSH.</p>
   <div id="lords-images">
-    <img src="https://github.com/Thorin137/REPOSITORY_NAME/raw/main/images/lord1.png" alt="Lorde Xypher" title="Lorde Xypher 'The Silent Echo'">
-    <img src="https://github.com/Thorin137/REPOSITORY_NAME/raw/main/images/lord2.png" alt="Lorde Virex" title="Lorde Virex 'The Deep Diver'">
-    <img src="https://github.com/Thorin137/REPOSITORY_NAME/raw/main/images/lord3.png" alt="Lorde Stryker" title="Lorde Stryker 'The Roar of Dread'">
-    <
+    <img src="images/lord1.png" alt="Lorde Xypher" title="
