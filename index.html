@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MARSH | Neon Fang Convergence</title>
+
+  <meta name="description" content="MARSH ($BASE) - 100 Genesis Warlords NFT & Web3 Project on Base Network.">
+  <meta property="og:title" content="MARSH | Neon Fang Convergence">
+  <meta property="og:description" content="100 Genesis Warlords. Neon cyber swamp. Built on Base.">
+  <meta property="og:image" content="hero.png">
+  <meta property="og:type" content="website">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Orbitron',sans-serif;
+    }
+
+    body{
+      background:radial-gradient(circle at 20% 20%,#0f0f2a,#03050a 60%);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    header{
+      text-align:center;
+      padding:90px 20px 60px;
+    }
+
+    header h1{
+      font-size:52px;
+      background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:0 0 25px #00f7ff;
+      margin-bottom:10px;
+    }
+
+    header p{
+      opacity:.7;
+      margin-top:10px;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      margin:10px;
+      border-radius:40px;
+      background:linear-gradient(45deg,#ff00c8,#00f7ff);
+      color:#fff;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      transition:.3s;
+      font-size:15px;
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+      box-shadow:0 0 45px #00f7ff;
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn.secondary:hover{
+      box-shadow:0 0 35px rgba(255,255,255,0.3);
+    }
+
+    section{
+      padding:80px 20px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    h2{
+      margin-bottom:25px;
+      font-size:28px;
+      color:#ff9900;
+      text-shadow:0 0 15px #ff9900;
+    }
+
+    .token-box{
+      background:rgba(20,25,34,0.7);
+      padding:30px;
+      border-radius:20px;
+      backdrop-filter:blur(15px);
+      box-shadow:0 0 30px rgba(255,60,0,.4);
+      line-height:2;
+      animation:fadeIn .6s ease-in-out;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(15px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    .contract-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .contract{
+      word-break:break-all;
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    .copy-btn{
+      padding:10px 20px;
+      border-radius:25px;
+      border:none;
+      cursor:pointer;
+      background:linear-gradient(45deg,#00f7ff,#ff00c8);
+      color:#fff;
+      transition:.3s;
+      font-size:13px;
+    }
+
+    .copy-btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 25px #00f7ff;
+    }
+
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .tabBtn{
+      padding:10px 20px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:25px;
+      color:#fff;
+      cursor:pointer;
+      transition:.3s;
+      font-size:14px;
+    }
+
+    .tabBtn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 20px rgba(0,247,255,0.5);
+    }
+
+    .tabBtn.active{
+      background:linear-gradient(45deg,#ff00c8,#00f7ff);
+      border:none;
+      box-shadow:0 0 30px rgba(0,247,255,0.7);
+    }
+
+    .fragmentCard{
+      background:rgba(20,25,34,0.8);
+      padding:25px;
+      border-radius:15px;
+      margin:10px 0;
+      box-shadow:0 0 25px rgba(0,247,255,0.5);
+      animation:fadeIn .6s ease-in-out;
+    }
+
+    .fragmentTitle{
+      font-weight:bold;
+      margin-bottom:10px;
+      color:#ff3c00;
+      font-size:16px;
+      letter-spacing:1px;
+    }
+
+    .hero-img{
+      max-width:340px;
+      width:90%;
+      border-radius:22px;
+      box-shadow:0 0 35px #00f7ff;
+      transition:.4s;
+    }
+
+    .hero-img:hover{
+      transform:scale(1.03);
+      box-shadow:0 0 60px rgba(0,247,255,0.9);
+    }
+
+    footer{
+      text-align:center;
+      padding:45px 20px;
+      background:#0a0f1f;
+      opacity:.9;
+      font-size:14px;
+    }
+
+    .socials{
+      margin-top:25px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .socials a{
+      color:#00f7ff;
+      text-decoration:none;
+      font-size:18px;
+      transition:.3s;
+    }
+
+    .socials a:hover{
+      color:#ff00c8;
+      text-shadow:0 0 15px #ff00c8;
+    }
+
+    .wallet-box{
+      margin-top:20px;
+      font-size:14px;
+      opacity:0.85;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .stat-card{
+      padding:18px;
+      border-radius:15px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 0 20px rgba(0,247,255,0.2);
+      text-align:center;
+      animation:fadeIn .6s ease-in-out;
+    }
+
+    .stat-card span{
+      display:block;
+      margin-top:8px;
+      font-size:18px;
+      color:#ff9900;
+      text-shadow:0 0 10px rgba(255,153,0,0.6);
+    }
+
+    .loading{
+      opacity:0.7;
+      font-size:14px;
+    }
+
+    @media(max-width:600px){
+      header h1{font-size:38px;}
+      header p{font-size:15px;}
+      .btn{padding:12px 25px;font-size:13px;}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>MARSH ($BASE)</h1>
+  <p>Neon Fang Convergence | 100 Genesis Warlords</p>
+
+  <a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
+  <a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
+
+  <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
+
+  <div class="wallet-box" id="walletAddress">Not Connected</div>
+
+  <div class="socials">
+    <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
+    <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
+  </div>
+</header>
+
+<section style="text-align:center;padding:40px 20px;">
+  <img src="hero.png" alt="MARSH Cyber Crocodile" class="hero-img">
+</section>
+
+<section>
+  <h2>Token Information</h2>
+
+  <div class="token-box">
+    <div class="contract-line">
+      <div class="contract">
+        <strong>Contract:</strong>
+        <span id="contractAddress">0xFaD48095cb493FFB7406659075F025Add0D93B07</span>
+      </div>
+
+      <button class="copy-btn" onclick="copyContract()">Copy</button>
+    </div>
+
+    <p><strong>Total Supply:</strong> 100B</p>
+    <p><strong>Liquidity:</strong> $20K</p>
+    <p><strong>Network:</strong> Base</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        Price (USD)
+        <span id="price" class="loading">Loading...</span>
+      </div>
+
+      <div class="stat-card">
+        Market Cap
+        <span id="mcap" class="loading">Loading...</span>
+      </div>
+
+      <div class="stat-card">
+        Liquidity
+        <span id="liq" class="loading">Loading...</span>
+      </div>
+
+      <div class="stat-card">
+        24H Volume
+        <span id="vol" class="loading">Loading...</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🌀 The MARSH Universe — The Veiled Pulse</h2>
+
+  <div class="tabs">
+    <button class="tabBtn active" onclick="showCategory('origin', this)">Origin</button>
+    <button class="tabBtn" onclick="showCategory('silence', this)">Silence</button>
+    <button class="tabBtn" onclick="showCategory('reflection', this)">Reflection</button>
+    <button class="tabBtn" onclick="showCategory('doubt', this)">Doubt</button>
+    <button class="tabBtn" onclick="showCategory('becoming', this)">Becoming</button>
+  </div>
+
+  <div id="fragmentContainer"></div>
+</section>
+
+<section>
+  <h2>🐊 The Marsh of Neon Fangs</h2>
+  <div class="token-box">
+
+    <p>
+      In the depths of a neon-soaked marsh, <strong>100 cyberpunk crocodiles</strong> emerged —
+      steel-veined predators bound to code, territory, and endless conflict.
+    </p>
+
+    <p>
+      The marsh fractured into <strong>five hostile realms</strong>.
+      Each realm is ruled by <strong>one Lord</strong> and guarded by <strong>19 cyber-crocodiles</strong>.
+    </p>
+
+    <p><strong>95 warriors. 5 Lords. One living swamp.</strong></p>
+
+    <hr style="opacity:.2;margin:25px 0;">
+
+    <p><strong>🔴 Red Mire Protocol</strong><br>
+      Lord: <strong>KRAZIX THE BLOOD-CODED</strong><br>
+      A realm where violence is law and hesitation is extinction.
+    </p>
+
+    <p><strong>🔵 Nullwave Swamp</strong><br>
+      Lord: <strong>SILTHAR THE SILENT ROOT</strong><br>
+      Soundless hunters. Invisible wars. Silence is supremacy.
+    </p>
+
+    <p><strong>🟣 Mirrorfen Grid</strong><br>
+      Lord: <strong>VEXA THE REFLECTOR</strong><br>
+      Illusion, deception, and fractured realities define this domain.
+    </p>
+
+    <p><strong>🟢 Rustbone Basin</strong><br>
+      Lord: <strong>MORVEX THE DECAY ENGINE</strong><br>
+      Corrosion fuels strength. Survival is the only truth.
+    </p>
+
+    <p><strong>🟡 Neon Abyss Verge</strong><br>
+      Lord: <strong>AUREX THE ASCENDED</strong><br>
+      The edge of evolution — where war may end, or mutate forever.
+    </p>
+
+    <p>
+      The realms are never at peace.<br>
+      Alliances rot. Power shifts.<br>
+      <strong>The marsh lives on war.</strong>
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 MARSH — Neon Fang Convergence
+</footer>
+
+<script>
+  const CONTRACT = "0xFaD48095cb493FFB7406659075F025Add0D93B07";
+  const BASE_CHAIN_ID = "0x2105";
+
+  async function connectWallet(){
+    if(!window.ethereum){
+      alert("Install MetaMask first.");
+      return;
+    }
+
+    try{
+      const accounts = await ethereum.request({method:"eth_requestAccounts"});
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+
+      if(chainId !== BASE_CHAIN_ID){
+        alert("Please switch to Base Network.");
+        return;
+      }
+
+      document.getElementById("walletAddress").innerText =
+        "Connected: " + accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
+
+    }catch(err){
+      alert("Wallet connection failed.");
+    }
+  }
+
+  async function copyContract(){
+    try{
+      await navigator.clipboard.writeText(CONTRACT);
+      alert("Contract Copied!");
+    }catch{
+      alert("Copy failed.");
+    }
+  }
+
+  const lore = {
+    origin: "MARSH emerged from silence — a signal without a source.",
+    silence: "In silence, value consolidates. Noise dissolves.",
+    reflection: "The chain reflects only what the holder believes.",
+    doubt: "Doubt fragments weak conviction. Holders remain.",
+    becoming: "MARSH is not launched. It is becoming."
+  };
+
+  function showCategory(key, btn){
+    document.getElementById("fragmentContainer").innerHTML = `
+      <div class="fragmentCard">
+        <div class="fragmentTitle">${key.toUpperCase()}</div>
+        <div>${lore[key]}</div>
+      </div>
+    `;
+
+    document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+
+  async function loadDexData(){
+    try{
+      const url = `https://api.dexscreener.com/latest/dex/tokens/${CONTRACT}`;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if(!data.pairs || data.pairs.length === 0){
+        document.getElementById("price").innerText = "N/A";
+        document.getElementById("mcap").innerText = "N/A";
+        document.getElementById("liq").innerText = "N/A";
+        document.getElementById("vol").innerText = "N/A";
+        return;
+      }
+
+      const pair = data.pairs[0];
+
+      document.getElementById("price").innerText = `$${Number(pair.priceUsd).toFixed(8)}`;
+      document.getElementById("mcap").innerText = `$${Number(pair.fdv).toLocaleString()}`;
+      document.getElementById("liq").innerText = `$${Number(pair.liquidity.usd).toLocaleString()}`;
+      document.getElementById("vol").innerText = `$${Number(pair.volume.h24).toLocaleString()}`;
+
+    }catch(err){
+      document.getElementById("price").innerText = "Error";
+      document.getElementById("mcap").innerText = "Error";
+      document.getElementById("liq").innerText = "Error";
+      document.getElementById("vol").innerText = "Error";
+    }
+  }
+
+  // Load default lore
+  showCategory("origin", document.querySelector(".tabBtn.active"));
+
+  // Load dex stats
+  loadDexData();
+</script>
+
+</body>
+</html>
