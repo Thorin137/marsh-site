@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>MARSH | Neon Fang Convergence</title>
 
   <meta name="description" content="MARSH ($BASE) - 100 Genesis Warlords NFT & Web3 Project on Base Network.">
@@ -13,7 +12,6 @@
   <meta property="og:type" content="website">
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 
   <style>
@@ -28,24 +26,46 @@
       background:radial-gradient(circle at 20% 20%,#0f0f2a,#03050a 60%);
       color:#fff;
       overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* PARALLAX BACKGROUND */
+    .bgGlow{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0,247,255,0.12), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(255,0,200,0.12), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255,60,0,0.10), transparent 60%);
+      z-index:-1;
+      transition:0.1s;
     }
 
     header{
       text-align:center;
-      padding:90px 20px 60px;
+      padding:95px 20px 60px;
     }
 
     header h1{
-      font-size:52px;
+      font-size:54px;
       background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       text-shadow:0 0 25px #00f7ff;
       margin-bottom:10px;
+      animation:glitchGlow 3s infinite alternate;
+    }
+
+    @keyframes glitchGlow{
+      from{filter:drop-shadow(0 0 10px rgba(0,247,255,0.5));}
+      to{filter:drop-shadow(0 0 25px rgba(255,0,200,0.8));}
     }
 
     header p{
-      opacity:.7;
+      opacity:.75;
       margin-top:10px;
       font-size:18px;
       line-height:1.7;
@@ -67,7 +87,7 @@
 
     .btn:hover{
       transform:scale(1.08);
-      box-shadow:0 0 45px #00f7ff;
+      box-shadow:0 0 45px rgba(0,247,255,0.9);
     }
 
     .btn.secondary{
@@ -93,13 +113,14 @@
     }
 
     .token-box{
-      background:rgba(20,25,34,0.7);
+      background:rgba(20,25,34,0.72);
       padding:30px;
       border-radius:20px;
       backdrop-filter:blur(15px);
-      box-shadow:0 0 30px rgba(255,60,0,.4);
+      box-shadow:0 0 35px rgba(255,60,0,.35);
       line-height:2;
       animation:fadeIn .6s ease-in-out;
+      position:relative;
     }
 
     @keyframes fadeIn{
@@ -107,34 +128,63 @@
       to{opacity:1; transform:translateY(0);}
     }
 
+    /* SPINNER */
+    .spinner{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,0.2);
+      border-top:2px solid #00f7ff;
+      animation:spin 0.7s linear infinite;
+      display:inline-block;
+      margin-right:6px;
+      vertical-align:middle;
+    }
+
+    @keyframes spin{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+
     .contract-line{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:12px;
       align-items:center;
       justify-content:space-between;
+      margin-bottom:15px;
     }
 
     .contract{
       word-break:break-all;
       font-size:14px;
-      opacity:0.9;
+      opacity:0.95;
+      cursor:pointer;
     }
 
-    .copy-btn{
-      padding:10px 20px;
-      border-radius:25px;
-      border:none;
-      cursor:pointer;
-      background:linear-gradient(45deg,#00f7ff,#ff00c8);
-      color:#fff;
-      transition:.3s;
+    .contract:hover{
+      color:#00f7ff;
+      text-shadow:0 0 10px #00f7ff;
+    }
+
+    .toast{
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,0.75);
+      padding:12px 22px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,0.15);
+      box-shadow:0 0 25px rgba(0,247,255,0.5);
+      opacity:0;
+      transition:.4s;
+      z-index:999;
       font-size:13px;
     }
 
-    .copy-btn:hover{
-      transform:scale(1.05);
-      box-shadow:0 0 25px #00f7ff;
+    .toast.show{
+      opacity:1;
     }
 
     .tabs{
@@ -167,11 +217,11 @@
     }
 
     .fragmentCard{
-      background:rgba(20,25,34,0.8);
+      background:rgba(20,25,34,0.85);
       padding:25px;
       border-radius:15px;
       margin:10px 0;
-      box-shadow:0 0 25px rgba(0,247,255,0.5);
+      box-shadow:0 0 25px rgba(0,247,255,0.4);
       animation:fadeIn .6s ease-in-out;
     }
 
@@ -184,21 +234,21 @@
     }
 
     .hero-img{
-      max-width:340px;
-      width:90%;
+      max-width:360px;
+      width:92%;
       border-radius:22px;
-      box-shadow:0 0 35px #00f7ff;
+      box-shadow:0 0 40px rgba(0,247,255,0.8);
       transition:.4s;
     }
 
     .hero-img:hover{
       transform:scale(1.03);
-      box-shadow:0 0 60px rgba(0,247,255,0.9);
+      box-shadow:0 0 70px rgba(0,247,255,0.95);
     }
 
     footer{
       text-align:center;
-      padding:45px 20px;
+      padding:50px 20px;
       background:#0a0f1f;
       opacity:.9;
       font-size:14px;
@@ -227,7 +277,7 @@
     .wallet-box{
       margin-top:20px;
       font-size:14px;
-      opacity:0.85;
+      opacity:0.9;
     }
 
     .stats-grid{
@@ -255,20 +305,46 @@
       text-shadow:0 0 10px rgba(255,153,0,0.6);
     }
 
-    .loading{
-      opacity:0.7;
-      font-size:14px;
+    /* MUSIC BTN */
+    .musicBtn{
+      position:fixed;
+      top:20px;
+      right:20px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.18);
+      padding:10px 15px;
+      border-radius:30px;
+      cursor:pointer;
+      color:#fff;
+      font-size:13px;
+      transition:.3s;
+      z-index:999;
+    }
+
+    .musicBtn:hover{
+      box-shadow:0 0 25px rgba(0,247,255,0.5);
+      transform:scale(1.05);
     }
 
     @media(max-width:600px){
       header h1{font-size:38px;}
       header p{font-size:15px;}
       .btn{padding:12px 25px;font-size:13px;}
+      .musicBtn{top:12px; right:12px; font-size:12px;}
     }
   </style>
 </head>
 
 <body>
+
+<div class="bgGlow" id="bgGlow"></div>
+<div class="toast" id="toast"></div>
+
+<button class="musicBtn" onclick="toggleMusic()">🎵 Music: OFF</button>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <header>
   <h1>MARSH ($BASE)</h1>
@@ -278,7 +354,6 @@
   <a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
 
   <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
-
   <div class="wallet-box" id="walletAddress">Not Connected</div>
 
   <div class="socials">
@@ -296,39 +371,41 @@
 
   <div class="token-box">
     <div class="contract-line">
-      <div class="contract">
+      <div class="contract" onclick="copyContract()">
         <strong>Contract:</strong>
         <span id="contractAddress">0xFaD48095cb493FFB7406659075F025Add0D93B07</span>
+        <small style="opacity:.6;">(tap to copy)</small>
       </div>
-
-      <button class="copy-btn" onclick="copyContract()">Copy</button>
     </div>
 
     <p><strong>Total Supply:</strong> 100B</p>
-    <p><strong>Liquidity:</strong> $20K</p>
     <p><strong>Network:</strong> Base</p>
 
     <div class="stats-grid">
       <div class="stat-card">
         Price (USD)
-        <span id="price" class="loading">Loading...</span>
+        <span id="price"><span class="spinner"></span>Loading...</span>
       </div>
 
       <div class="stat-card">
         Market Cap
-        <span id="mcap" class="loading">Loading...</span>
+        <span id="mcap"><span class="spinner"></span>Loading...</span>
       </div>
 
       <div class="stat-card">
         Liquidity
-        <span id="liq" class="loading">Loading...</span>
+        <span id="liq"><span class="spinner"></span>Loading...</span>
       </div>
 
       <div class="stat-card">
         24H Volume
-        <span id="vol" class="loading">Loading...</span>
+        <span id="vol"><span class="spinner"></span>Loading...</span>
       </div>
     </div>
+
+    <p style="margin-top:15px;opacity:0.7;font-size:13px;">
+      Auto-updates every 10 seconds via Dexscreener API.
+    </p>
   </div>
 </section>
 
@@ -348,8 +425,8 @@
 
 <section>
   <h2>🐊 The Marsh of Neon Fangs</h2>
-  <div class="token-box">
 
+  <div class="token-box">
     <p>
       In the depths of a neon-soaked marsh, <strong>100 cyberpunk crocodiles</strong> emerged —
       steel-veined predators bound to code, territory, and endless conflict.
@@ -394,7 +471,6 @@
       Alliances rot. Power shifts.<br>
       <strong>The marsh lives on war.</strong>
     </p>
-
   </div>
 </section>
 
@@ -405,6 +481,23 @@
 <script>
   const CONTRACT = "0xFaD48095cb493FFB7406659075F025Add0D93B07";
   const BASE_CHAIN_ID = "0x2105";
+
+  // PARALLAX EFFECT
+  document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth) * 20;
+    const y = (e.clientY / window.innerHeight) * 20;
+    document.getElementById("bgGlow").style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  function showToast(text){
+    const toast = document.getElementById("toast");
+    toast.innerText = text;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2000);
+  }
 
   async function connectWallet(){
     if(!window.ethereum){
@@ -417,12 +510,21 @@
       const chainId = await ethereum.request({ method: "eth_chainId" });
 
       if(chainId !== BASE_CHAIN_ID){
-        alert("Please switch to Base Network.");
-        return;
+        try{
+          await ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: BASE_CHAIN_ID }]
+          });
+        }catch(err){
+          alert("Please switch to Base Network manually.");
+          return;
+        }
       }
 
       document.getElementById("walletAddress").innerText =
         "Connected: " + accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
+
+      showToast("Wallet Connected ⚡");
 
     }catch(err){
       alert("Wallet connection failed.");
@@ -432,9 +534,9 @@
   async function copyContract(){
     try{
       await navigator.clipboard.writeText(CONTRACT);
-      alert("Contract Copied!");
+      showToast("Contract Copied ✅");
     }catch{
-      alert("Copy failed.");
+      showToast("Copy Failed ❌");
     }
   }
 
@@ -487,12 +589,33 @@
     }
   }
 
-  // Load default lore
-  showCategory("origin", document.querySelector(".tabBtn.active"));
+  // MUSIC TOGGLE
+  let musicOn = false;
+  function toggleMusic(){
+    const audio = document.getElementById("bgMusic");
+    const btn = document.querySelector(".musicBtn");
 
-  // Load dex stats
+    if(!musicOn){
+      audio.volume = 0.25;
+      audio.play();
+      musicOn = true;
+      btn.innerText = "🎵 Music: ON";
+      showToast("Music Enabled 🎶");
+    }else{
+      audio.pause();
+      musicOn = false;
+      btn.innerText = "🎵 Music: OFF";
+      showToast("Music Disabled ❌");
+    }
+  }
+
+  // DEFAULT LOAD
+  showCategory("origin", document.querySelector(".tabBtn.active"));
   loadDexData();
+
+  // AUTO UPDATE EVERY 10 SEC
+  setInterval(loadDexData, 10000);
 </script>
 
 </body>
-</html>
+  </html>
