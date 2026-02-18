@@ -7,7 +7,9 @@
 <meta name="description" content="MARSH on Base. 100 Genesis Neon Fang NFTs. Permanently limited NFT collection fueling Web3 evolution.">
 <meta name="keywords" content="MARSH, Base token, NFT, Web3, Neon Fang, ERC721">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<!-- اضافه کردن فونت Roboto از Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 
 <style>
@@ -15,7 +17,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Roboto', sans-serif; /* استفاده از فونت Roboto */
 }
 
 html, body {
@@ -27,6 +29,7 @@ html, body {
   color: #fff;
   background-color: #0a3d2b; /* سبز مردابی */
   overflow-x: hidden;
+  width: 100%;
 }
 
 header {
@@ -79,8 +82,8 @@ header p {
 
 section {
   padding: 80px 20px;
-  max-width: 1200px;
-  width: 100%;
+  width: 100%;  /* استفاده از width: 100% برای جلوگیری از مشکل zoom-out */
+  max-width: 1200px; /* حداکثر عرض 1200px */
   margin: 20px;
 }
 
@@ -206,4 +209,14 @@ footer {
 
   <div class="fragmentCard">
     <div class="fragmentTitle">Realm I: The Silent Swamp</div>
-    <p>The lord here, known as "Lorde Xypher 'The Silent Echo'," rules with unmatched stealth and power. His crocodiles are silent but deadly, lurking beneath the still
+    <p>The lord here, known as "Lorde Xypher 'The Silent Echo'," rules with unmatched stealth and power. His crocodiles are silent but deadly, lurking beneath the still waters.</p>
+  </div>
+
+  <div class="fragmentCard">
+    <div class="fragmentTitle">Realm II: The Echoing Depths</div>
+    <p>The lord here, "Lorde Virex 'The Deep Diver'," controls the deepest waters and the hidden dangers lurking beneath them.</p>
+  </div>
+
+  <div class="fragmentCard">
+    <div class="fragmentTitle">Realm III: The Roaring Mire</div>
+    <p>The lord here, "Lorde Stryker 'The Roar
