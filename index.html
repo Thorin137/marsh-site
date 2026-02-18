@@ -159,7 +159,7 @@ footer{
 
 <section>
 <h2>🔥 MARSH 100 Visual Universe</h2>
-<p style="opacity:.6;">Upload your PNG files inside /images as nft_1.png to nft_100.png</p>
+<p style="opacity:.6;">Upload your PNG files inside /images as 1.png to 100.png</p>
 <div class="tabs">
 <button class="tabBtn" onclick="showFragment(1)">Fragment I</button>
 <button class="tabBtn" onclick="showFragment(2)">Fragment II</button>
@@ -212,4 +212,40 @@ function showFragment(num){
     let end=lordId-1;
     let html=`<div class="section">
       <div class="lord">
-        <h2>👑 Lord of Fragment ${num} —
+        <h2>👑 Lord of Fragment ${num} — </h2>
+      </div>
+      <div class="grid">`;
+    for(let i=start; i<=lordId; i++){
+      html+=`
+        <div class="card">
+          <img src="/images/${i}.png" alt="NFT ${i}">
+        </div>
+      `;
+    }
+    html+=`</div></div>`;
+    content.innerHTML=html;
+    content.style.opacity=1;
+  },300);
+}
+
+function showAll(){
+  const content = document.getElementById("content");
+  content.style.opacity = 0;
+  setTimeout(() => {
+    let html = `<div class="grid">`;
+    for (let i = 1; i <= 100; i++) {
+      html += `
+        <div class="card">
+          <img src="/images/${i}.png" alt="NFT ${i}">
+        </div>
+      `;
+    }
+    html += `</div>`;
+    content.innerHTML = html;
+    content.style.opacity = 1;
+  }, 300);
+}
+</script>
+
+</body>
+  </html>
