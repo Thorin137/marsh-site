@@ -12,8 +12,12 @@
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
-body { color: #fff; overflow-x: hidden; }
-header { text-align: center; padding: 100px 20px; }
+body { 
+  color: #fff; 
+  overflow-x: hidden; 
+  background-color: #0a3d2b; /* سبز مردابی */
+}
+header { text-align: center; padding: 50px 20px; background-color: #1d2b2c; border-radius: 15px; box-shadow: 0 0 20px rgba(0, 247, 255, 0.5); }
 header h1 {
   font-size: 50px;
   background: linear-gradient(90deg, #ff3c00, #00f7ff, #ff00c8);
@@ -22,8 +26,13 @@ header h1 {
   text-shadow: 0 0 25px #00f7ff;
 }
 header p { opacity: .7; margin-top: 10px; font-size: 18px; }
-.btn {
-  display: inline-block;
+.header-btns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.header-btns a, .header-btns button {
   padding: 15px 35px;
   margin: 10px;
   border-radius: 40px;
@@ -34,7 +43,10 @@ header p { opacity: .7; margin-top: 10px; font-size: 18px; }
   cursor: pointer;
   transition: .3s;
 }
-.btn:hover { transform: scale(1.1); box-shadow: 0 0 45px #00f7ff; }
+.header-btns a:hover, .header-btns button:hover { 
+  transform: scale(1.1); 
+  box-shadow: 0 0 45px #00f7ff; 
+}
 section { padding: 80px 20px; max-width: 1200px; margin: auto; }
 h2 {
   margin-bottom: 25px;
@@ -76,21 +88,6 @@ footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
 }
 .socials a:hover { color: #ff00c8; }
 #content { transition: opacity 0.3s; }
-#lords-images {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
-  margin-top: 20px;
-}
-#lords-images img {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-#lords-images img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #00f7ff;
-}
 </style>
 </head>
 <body>
@@ -99,13 +96,13 @@ footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
 <h1>MARSH ($BASE)</h1>
 <p>Silent in the swamp. Violent on the charts.</p>
 
-<a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
-<a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
+<div class="header-btns">
+  <a href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
+  <a href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
+  <button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+</div>
 
-<button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
-<span id="walletAddress"></span>
-
-<div class="socials" style="margin-top: 20px;">
+<div class="socials" style="margin-top:20px;">
   <a href="https://instagram.com/marshproject" target="_blank">Instagram</a>
   <a href="https://twitter.com/marshproject" target="_blank">Twitter</a>
 </div>
@@ -163,8 +160,11 @@ footer { text-align: center; padding: 40px; background: #0a0f1f; opacity: .9; }
   <p>The lord here, "Lorde Solvathar 'The Flame Over Marsh'," controls the fires that scorch his land, with crocodiles forged in the heat of battle.</p>
 </div>
 
-<section>
-  <h2>🔥 Lords Images</h2>
-  <p>Below are the images of the 5 powerful lords who rule the realms of MARSH.</p>
-  <div id="lords-images">
-    <img src="images/lord1.png" alt="Lorde Xypher" title="
+<footer>
+  © 2026 MARSH — Neon Fang Convergence
+</footer>
+
+<script>
+async function connectWallet(){
+  if(typeof window.ethereum==="undefined"){alert("Install MetaMask");return;}
+  const accounts=await window.ethereum.request({method
