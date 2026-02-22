@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARSH | Neon Fang Convergence</title>
+
+<meta name="description" content="MARSH ($SOL) - 100 Genesis Warlords NFT & Web3 Project on Solana.">
+<meta property="og:title" content="MARSH | Neon Fang Convergence">
+<meta property="og:description" content="100 Genesis Warlords. Neon cyber swamp. Built on Solana.">
+<meta property="og:type" content="website">
+
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:radial-gradient(circle at 20% 20%,#0f0f2a,#03050a 60%);
+  color:#fff;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* CINEMATIC HERO */
+.cinema-hero{
+  position:relative;
+  text-align:center;
+  padding:100px 20px 60px;
+  overflow:hidden;
+}
+
+.hero-img-cinematic{
+  max-width:400px;
+  width:92%;
+  border-radius:25px;
+  animation:float 6s ease-in-out infinite alternate;
+  box-shadow:
+    0 0 40px rgba(0,247,255,0.8),
+    0 0 80px rgba(255,0,200,0.5);
+  transition:0.5s;
+}
+
+.hero-img-cinematic:hover{
+  transform:scale(1.05);
+  box-shadow:
+    0 0 70px rgba(0,247,255,1),
+    0 0 120px rgba(255,0,200,0.9);
+}
+
+@keyframes float{
+  from{ transform:translateY(0px);}
+  to{ transform:translateY(-18px);}
+}
+
+.smoke-layer{
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,247,255,0.15), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(255,0,200,0.15), transparent 60%);
+  animation:smokeMove 25s linear infinite;
+  z-index:-1;
+}
+
+@keyframes smokeMove{
+  from{ transform:rotate(0deg);}
+  to{ transform:rotate(360deg);}
+}
+
+h1{
+  font-size:56px;
+  margin-top:10px;
+  background:linear-gradient(90deg,#ff3c00,#00f7ff,#ff00c8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.launch-badge{
+  margin-top:15px;
+  display:inline-block;
+  padding:10px 22px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00f7ff,#ff00c8);
+  font-size:14px;
+  box-shadow:0 0 25px rgba(0,247,255,0.7);
+}
+
+.section{
+  max-width:900px;
+  margin:60px auto;
+  padding:30px;
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+}
+
+.btn{
+  padding:14px 30px;
+  margin:10px;
+  border-radius:40px;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(45deg,#ff00c8,#00f7ff);
+  color:white;
+}
+
+.musicBtn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:10px 18px;
+  border-radius:30px;
+  cursor:pointer;
+  color:#fff;
+  font-size:13px;
+  z-index:999;
+}
+</style>
+</head>
+
+<body>
+
+<button class="musicBtn" onclick="toggleMusic()">🎵 Music: OFF</button>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="cinema-hero">
+  <div class="smoke-layer"></div>
+  <img src="hero.png" alt="MARSH Genesis NFT" class="hero-img-cinematic">
+  <h1>MARSH ($SOL)</h1>
+  <div class="launch-badge">⚡ Launching on Solana Soon</div>
+  <p>Neon Fang Convergence | 100 Genesis Warlords</p>
+</div>
+
+<div class="section">
+<h2>Token Information</h2>
+<p><strong>Network:</strong> Solana</p>
+<p><strong>SPL Token Address:</strong></p>
+<p id="tokenAddress">PASTE_YOUR_SPL_TOKEN_ADDRESS_HERE</p>
+<br>
+<a id="solscanLink" target="_blank">View on Solscan</a>
+
+<h3 style="margin-top:25px;">Live Price (Jupiter)</h3>
+<p id="price">Launching Soon...</p>
+</div>
+
+<footer style="margin:60px 0 40px 0;">
+© 2026 MARSH — Built on Solana ⚡
+</footer>
+
+<script>
+const TOKEN_ADDRESS = "PASTE_YOUR_SPL_TOKEN_ADDRESS_HERE";
+
+document.getElementById("solscanLink").href =
+  "https://solscan.io/token/" + TOKEN_ADDRESS;
+
+async function loadPrice(){
+  try{
+    const res = await fetch("https://price.jup.ag/v4/price?ids=" + TOKEN_ADDRESS);
+    const data = await res.json();
+    if(data.data && data.data[TOKEN_ADDRESS]){
+      document.getElementById("price").innerText =
+        "$" + data.data[TOKEN_ADDRESS].price;
+    }
+  }catch{}
+}
+
+setInterval(loadPrice,10000);
+
+// MUSIC
+let musicOn = false;
+function toggleMusic(){
+  const audio = document.getElementById("bgMusic");
+  const btn = document.querySelector(".musicBtn");
+  if(!musicOn){
+    audio.volume = 0.25;
+    audio.play();
+    musicOn = true;
+    btn.innerText = "🎵 Music: ON";
+  }else{
+    audio.pause();
+    musicOn = false;
+    btn.innerText = "🎵 Music: OFF";
+  }
+}
+</script>
+
+</body>
+</html>
